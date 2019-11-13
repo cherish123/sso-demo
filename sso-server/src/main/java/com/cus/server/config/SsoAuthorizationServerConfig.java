@@ -40,20 +40,20 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         PasswordEncoder passwordEncoder = passwordEncoder();
         clients.inMemory()
                 .withClient("cus1")
-                .secret(passwordEncoder.encode("cus1"))
-                .redirectUris("http://127.0.0.1:8088/client1/login")
-                .refreshTokenValiditySeconds(7200)
-                .accessTokenValiditySeconds(3600)
-                .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all")
-                .and()
+                    .secret(passwordEncoder.encode("cus1"))
+                    .redirectUris("http://127.0.0.1:8088/login")
+                    .refreshTokenValiditySeconds(7200)
+                    .accessTokenValiditySeconds(3600)
+                    .authorizedGrantTypes("authorization_code", "refresh_token")
+                    .scopes("all")
+                    .and()
                 .withClient("cus2")
-                .secret(passwordEncoder.encode("cus2"))
-                .redirectUris("http://127.0.0.1:8089/client2/login")
-                .refreshTokenValiditySeconds(7200)
-                .accessTokenValiditySeconds(3600)
-                .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all");
+                    .secret(passwordEncoder.encode("cus2"))
+                    .redirectUris("http://127.0.0.1:8089/login")
+                    .refreshTokenValiditySeconds(7200)
+                    .accessTokenValiditySeconds(3600)
+                    .authorizedGrantTypes("authorization_code", "refresh_token")
+                    .scopes("all");
     }
 
     @Override
