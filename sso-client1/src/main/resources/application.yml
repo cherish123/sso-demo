@@ -1,8 +1,9 @@
 
+
 server:
   port: 8088
-#  servlet:
-#    context-path: /client1
+  servlet:
+    context-path: /client1
 
 #配置安全相关模块
 security:
@@ -15,6 +16,8 @@ security:
     resource:
       jwt:
         key-uri: http://127.0.0.1:9999/server/oauth/token_key
+#    sso:
+#      login-path: /login
 
 spring:
   thymeleaf:
