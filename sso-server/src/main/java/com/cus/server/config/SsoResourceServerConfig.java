@@ -14,12 +14,12 @@ public class SsoResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(SsoResourceServerConfig.class);
 
-//    public static final String RESOURCE_ID = "authorizationserver";
+    public static final String RESOURCE_ID = "authorizationserver";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         super.configure(resources);
-//        resources.resourceId(RESOURCE_ID);
+        resources.resourceId(RESOURCE_ID);
     }
 
     @Override

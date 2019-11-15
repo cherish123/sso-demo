@@ -53,7 +53,15 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
                     .refreshTokenValiditySeconds(7200)
                     .accessTokenValiditySeconds(3600)
                     .authorizedGrantTypes("authorization_code", "refresh_token")
-                    .scopes("all");
+                    .scopes("all")
+                    .and()
+                .withClient("client-for-server")
+                .secret(passwordEncoder.encode("client-for-server"))
+                .redirectUris("http://127.0.0.1:8090/login/oauth2/code/authorizationserver")
+                .refreshTokenValiditySeconds(7200)
+                .accessTokenValiditySeconds(3600)
+                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .scopes("all");
     }
 
     @Override
