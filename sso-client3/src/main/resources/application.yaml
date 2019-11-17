@@ -20,14 +20,15 @@ spring:
             client-id: client-for-server
             client-secret: client-for-server
             provider: authorizationserver
-            client-name: 使用自定义授权服务器登录
+            client-name: clientName
             authorization-grant-type: authorization_code
             client-authentication-method: basic
             scope: all
-            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
-          provider:
-            authorizationserver:
-              authorization-uri: http://127.0.0.1:9999/server/oauth/authorize
-              token-uri: http://127.0.0.1:9999/server/oauth/token
-              user-info-uri: http://127.0.0.1:9999/server/me
-              user-name-attribute: "name"
+#            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          authorizationserver:
+           authorization-uri: http://127.0.0.1:9999/server/oauth/authorize
+           token-uri: http://127.0.0.1:9999/server/oauth/token
+           user-info-uri: http://127.0.0.1:9999/server/me
+           user-name-attribute: "name"
