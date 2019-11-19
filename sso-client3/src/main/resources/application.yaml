@@ -1,33 +1,28 @@
-#spring:
-#  security:
-#    oauth2:
-#      client:
-#        registration: #是OAuth客户端所有属性的基础前缀
-#          github:
-#            client-id: d0d8358a24e3c29278fb
-#            client-secret: 0a672afdd444c4f05fb6eb18dc62a8e01e9a06ef
-#            client-name: GitHub登录
 server:
-  port: 8090
-
+  port: 80
 
 spring:
   security:
     oauth2:
       client:
         registration: #是OAuth客户端所有属性的基础前缀
-          authorizationserver:
-            client-id: client-for-server
-            client-secret: client-for-server
-            provider: authorizationserver
-            client-name: 使用自定义授权服务器登录
+          github:
+            client-id: d0d8358a24e3c29278fb
+            client-secret: 0a672afdd444c4f05fb6eb18dc62a8e01e9a06ef
+            client-name: GitHub登录
+            redirect-uri: "{baseUrl}/qqLogin/{registrationId}"
+          callback:
+            client-id: 100550231
+            client-secret: 69b6ab57b22f3c2fe6a6149274e3295e
+            provider: qq
+            client-name: qq登录
             authorization-grant-type: authorization_code
-            client-authentication-method: basic
-            scope: all
-            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
-          provider:
-            authorizationserver:
-              authorization-uri: http://127.0.0.1:9999/server/oauth/authorize
-              token-uri: http://127.0.0.1:9999/server/oauth/token
-              user-info-uri: http://127.0.0.1:9999/server/me
-              user-name-attribute: "name"
+            client-authenticaton-method: post
+            scope: get_user_info,list_album,upload_pic,do_like
+            redirect-uri: "{baseUrl}/qqLogin/{registrationId}"
+        provider:
+          qq:
+            authorization-uri: https://graph.qq.com/oauth2.0/authorize
+            token-uri: https://graph.qq.com/oauth2.0/token
+            user-info-uri: https://graph.qq.com/oauth2.0/me
+            user-name-attribute: "nickname"
