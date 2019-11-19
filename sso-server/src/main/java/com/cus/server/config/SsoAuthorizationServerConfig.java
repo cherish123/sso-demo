@@ -61,7 +61,8 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
                 .refreshTokenValiditySeconds(7200)
                 .accessTokenValiditySeconds(3600)
                 .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all");
+                .scopes("all")
+                .resourceIds("authorizationserver");
     }
 
     @Override
