@@ -6,8 +6,8 @@ server:
 security:
   oauth2:
     resource:
-      user-info-uri: http://127.0.0.1:9999/server/me
-#      token-info-uri: http://127.0.0.1:9999/oauth/check_token
-#      jwt:
-#        key-uri: http://127.0.0.1:9999/server/oauth/token_key  # 该地址会获取public key也就是我们在认证服务器中配置的内容
-#        key-value: cus
+#      user-info-uri: http://127.0.0.1:9999/server/me
+      token-info-uri: http://127.0.0.1:9999/server/oauth/check_token
+      jwt:
+        key-uri: http://127.0.0.1:9999/server/oauth/token_key  # 该地址会获取public key也就是我们在认证服务器中配置的内容
+        key-value: cus

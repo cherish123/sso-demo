@@ -23,17 +23,17 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public TokenStore jwtTokenStore() {
-//        return new JwtTokenStore(jwtAccessTokenConverter());
-//    }
-//
-//    @Bean
-//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey("cus");
-//        return converter;
-//    }
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("cus");
+        return converter;
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -65,13 +65,13 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
                 .resourceIds("resourceserver","authorizationserver");
     }
 
-//    @Override
-//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        endpoints.tokenStore(jwtTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
-//    }
-//
-//    @Override
-//    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-//        security.tokenKeyAccess("isAuthenticated()"); //获取签名key要认证
-//    }
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        endpoints.tokenStore(jwtTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("isAuthenticated()"); //获取签名key要认证
+    }
 }
