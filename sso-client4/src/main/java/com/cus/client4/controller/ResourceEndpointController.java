@@ -18,6 +18,8 @@ public class ResourceEndpointController {
 
     private static final String URL_TO_CLIENT1 = "http://127.0.0.1:9999/server/phone";
 
+    private static final String RESOURCE_SEVER_API = "http://127.0.0.1:9090/resource1/resource";
+
     private RestTemplate restTemplate;
 
     @Autowired
@@ -31,17 +33,26 @@ public class ResourceEndpointController {
     }
 
     @GetMapping("/phone")
-    public String userinfo(OAuth2AuthenticationToken authentication){
+    public String userinfo(OAuth2AuthenticationToken authentication,String callApi){
 
+        return getResponse(authentication,URL_TO_CLIENT1);
+    }
+
+    @GetMapping("/resource")
+    public String resource(OAuth2AuthenticationToken authentication,String callApi){
+
+        return getResponse(authentication,RESOURCE_SEVER_API);
+    }
+
+    private String getResponse(OAuth2AuthenticationToken authentication,String callApi) {
         OAuth2AuthorizedClient oAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(
                 authentication.getAuthorizedClientRegistrationId(),authentication.getName()
         );
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization","bearer "+oAuth2AuthorizedClient.getAccessToken().getTokenValue());
+        HttpHeaders httpHeaders = new HttpHeaders();httpHeaders.set("Authorization","bearer "+oAuth2AuthorizedClient.getAccessToken().getTokenValue());
 
         HttpEntity<String> requestEntity = new HttpEntity<String>(null,httpHeaders);
-        ResponseEntity<String> response = getRestTemplate().exchange(URL_TO_CLIENT1, HttpMethod.GET,requestEntity,String.class);
+        ResponseEntity<String> response = getRestTemplate().exchange(callApi, HttpMethod.GET,requestEntity,String.class);
         return response.getBody();
     }
 

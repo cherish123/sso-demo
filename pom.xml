@@ -8,6 +8,7 @@
         <module>sso-client2</module>
         <module>sso-client3</module>
         <module>sso-client4</module>
+        <module>resource-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
