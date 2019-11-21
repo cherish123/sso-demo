@@ -10,3 +10,6 @@ bug/001 （添加了server.servlet.context-path）修复了feature/001 上切换
 
 
 feature/002 访问受资源服务器保护的api（sso-server和sso-client3模块）以及支持多种服务提供商并存（sso-client3）
+
+
+feature/001 资源服务器和授权服务器交互
